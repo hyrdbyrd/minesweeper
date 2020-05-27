@@ -1,0 +1,120 @@
+.minesweeper {
+    --cell-size: 24px;
+
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.minesweeper__game {
+    background: #116;
+
+    position: relative;
+}
+
+.minesweeper__game::before {
+    content: '';
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+
+    transition: 1s all .2s linear;
+
+    font-size: 36px;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+    z-index: -1;
+}
+
+.minesweeper__game_won::before {
+    content: 'Win';
+    z-index: auto;
+
+    background: radial-gradient(rgb(90, 180, 90) 5%, rgba(180, 255, 180, .5));
+    color: #393;
+    text-shadow: 1px 1px 1px #000;
+
+    opacity: 1;
+}
+
+.minesweeper__game_loss::before {
+    content: 'Loss';
+    z-index: auto;
+
+    background: radial-gradient(rgb(180, 90, 90) 5%, rgba(255, 180, 180, .5));
+    color: #e33;
+    text-shadow: 1px 1px 1px #000;
+
+    opacity: 1;
+}
+
+.minesweeper__td {
+    width: var(--cell-size);
+    height: var(--cell-size);
+
+    transition: all .2s linear;
+
+    text-align: center;
+    vertical-align: middle;
+
+    background: linear-gradient(45deg, #33f, #ccf 25%, #33f);
+    border: 1px solid #99f;
+    border-radius: 4px;
+
+    cursor: pointer;
+}
+
+.minesweeper__td_opened {
+    background: linear-gradient(45deg, #eef, #fff 25%, #ccf);
+}
+
+.minesweeper__td:not(.minesweeper__td_opened):hover {
+    border-color: #fc0;
+    box-shadow: inset 0 0 var(--cell-size) var(--cell-size) rgba(255, 204, 0, .5);
+}
+
+.minesweeper__td_type_1 {
+    color: #66f;
+}
+
+.minesweeper__td_checked::before,
+.minesweeper__td_with-bomb::before {
+    content: '';
+    display: inline-block;
+
+    background-image: url(bomb.png);
+    background-size: 100% 100%;
+
+    width: calc(var(--cell-size) / 1.75);
+    height: calc(var(--cell-size) / 1.5);
+}
+
+.minesweeper__td_type_2 {
+    color: #7a7;
+}
+
+.minesweeper__td_type_3 {
+    color: #a33;
+}
+
+.minesweeper__td_type_4 {
+    color: #99f;
+}
+
+.minesweeper__td_with-bomb {
+    background: #aa3333;
+    border-color: #ee3333
+}
+
+.minesweeper__td_with-bomb::before {
+    opacity: .5;
+}
+
